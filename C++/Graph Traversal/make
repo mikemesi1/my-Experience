@@ -1,0 +1,8 @@
+question5.exe: question5.o
+	g++ question5.o -o question5.exe
+
+question5.o: question5.cc
+	g++ -c question5.cc
+
+clean:
+	rm *.o question5.exe

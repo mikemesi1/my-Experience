@@ -1,0 +1,8 @@
+addmachine.exe:  addmachine.o
+	g++ addmachine.o -o addmachine.exe
+
+addmachine.o: addmachine.cc
+	g++ -c addmachine.cc
+
+clean:
+	rm *.o addmachine.exe

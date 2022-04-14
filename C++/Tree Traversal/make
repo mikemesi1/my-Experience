@@ -1,0 +1,8 @@
+animalBtree.exe:  animalBtree.o
+	g++ animalBtree.o -o animalBtree.exe
+
+animalBtree.o: animalBtree.cc
+	g++ -c animalBtree.cc
+
+clean:
+	rm *.o animalBtree.exe

@@ -1,0 +1,8 @@
+wordcounter.exe:  wordcounter.o
+	g++ wordcounter.o -o wordcounter.exe
+
+wordcounter.o: wordcounter.cc
+	g++ -c wordcounter.cc
+
+clean:
+	rm *.o wordcounter.exe

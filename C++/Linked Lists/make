@@ -1,0 +1,8 @@
+linkedListdriver.exe:  linkedListdriver.o
+	g++ linkedListdriver.o -o linkedListdriver.exe
+
+linkedListdriver.o: linkedListdriver.cc
+	g++ -c linkedListdriver.cc
+
+clean:
+	rm *.o linkedListdriver.exe
