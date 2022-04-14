@@ -1,0 +1,72 @@
+Use z1910569
+
+DROP TABLE IF EXISTS Plays;
+DROP TABLE IF EXISTS Contributed;
+DROP TABLE IF EXISTS Queue;
+DROP TABLE IF EXISTS File;
+DROP TABLE IF EXISTS Song;
+DROP TABLE IF EXISTS Contributer;
+DROP TABLE IF EXISTS Instruments;
+DROP TABLE IF EXISTS Band;
+
+
+CREATE TABLE Contributer(
+ContributerName Char(32) NOT NULL,
+ContributerID INT AUTO_INCREMENT PRIMARY KEY
+);
+
+CREATE TABLE Instruments(
+InstrumentName CHAR(32) UNIQUE PRIMARY KEY
+);
+
+CREATE TABLE Band(
+BandID INT AUTO_INCREMENT PRIMARY KEY,
+BandName CHAR(32) NOT NULL
+);
+
+CREATE TABLE Song(
+SongID INT AUTO_INCREMENT PRIMARY KEY,
+SongName char(32) NOT NULL,
+BandID INT NOT NULL,
+FOREIGN KEY(BandID) REFERENCES Band(BandID)
+);
+
+CREATE TABLE File(
+FileID INT AUTO_INCREMENT PRIMARY KEY,
+SongVersion char(32) NOT NULL,
+SongID INT NOT NULL,
+FOREIGN KEY(SongID) REFERENCES Song(SongID)
+);
+
+CREATE TABLE Queue(
+QueueNumber INT AUTO_INCREMENT PRIMARY KEY,
+CustomerName CHAR(32) NOT NULL,
+FileID INT NOT NULL,
+FOREIGN KEY(FileID) REFERENCES File(FileID)
+);
+
+CREATE TABLE PQueue(
+PQueueNumber INT AUTO_INCREMENT PRIMARY KEY,
+CustomerName CHAR(32) NOT NULL,
+Paid int,
+FileID INT NOT NULL,
+FOREIGN KEY(FileID) REFERENCES File(FileID)
+);
+
+CREATE TABLE Contributed(
+ContributerID INT,
+SongID int,
+_Date DATE,
+PRIMARY KEY (ContributerID, SongID),
+FOREIGN KEY (ContributerID) REFERENCES Contributer(ContributerID),
+FOREIGN KEY (SongID) REFERENCES Song(SongID)
+);
+
+CREATE TABLE Plays(
+ContributerID int,
+InstrumentName Char(32),
+YearJoined INT NOT NULL,
+PRIMARY KEY (ContributerID, InstrumentName),
+FOREIGN KEY (ContributerID) REFERENCES Contributer(ContributerID),
+FOREIGN KEY (InstrumentName) REFERENCES Instruments(InstrumentName)
+);
